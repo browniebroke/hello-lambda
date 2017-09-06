@@ -4,16 +4,28 @@ Minimal project to get up and running on AWS lambda with Python 3.6 and [pipenv]
 
 ## Quickstart
 
+The main commands are wrapped using a very simple Makefile. I believe it doesn't work on Windows
+but I don't have a window machine to care enough. If you feel like adding that, feel free to 
+send me a pull request.
+
 ### Install
 
 The first time only:
-- `pipenv install`: Create a virtual environment and install dependencies
+- `make install`: Create a virtual environment and install dependencies using pipenv
+
+### Test locally
+
+- `make run`: call the lambda handler using `pipenv run`
 
 ### Build
 
-- `./build.sh`: Collect dependencies and entry point script into a [deployment package](http://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html)
-
-At this point you should have a delivrable for AWS on your Desktop
+- `make build`: Collect dependencies and entry point script into a
+  [deployment package](http://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html)
+  By default, it'll be a `deliverable.zip` in the root of the project.
+  
+  The target is customisable and may be provided on the command line:
+  
+      make build OUT_FILE=outfile.zip
 
 ### Upload and Deploy
 
